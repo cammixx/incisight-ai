@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Floating stars transition (uiverse LightAndy1) */
+.cta-loader {
+  user-select: none;
+  display: flex;
+  align-items: flex-end;
+}
+.cta-star {
+  opacity: 0;
+  fill: #fda4af;
+  animation: cta-loader 2s infinite alternate;
+}
+.cta-star2 {
+  height: 20px;
+  margin-left: -10px;
+  animation-delay: 0.25s;
+}
+.cta-star3 {
+  height: 16px;
+  margin-left: -15px;
+  animation-delay: 0.5s;
+}
+@keyframes cta-text-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes cta-loader {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(50px) rotate(0deg);
+  }
+  10% {
+    opacity: 0;
+    transform: translateY(0) translateX(50px) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-20px) translateX(0) rotate(360deg);
+  }
+}
+
+/* Onboarding get started loader */
+.onboarding-loader {
+  width: fit-content;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 24px;
+  background: radial-gradient(circle closest-side, #fb7185 94%, #0000) right/calc(200% - 1em) 100%;
+  animation: onboarding-l24 1s infinite alternate linear;
+}
+.onboarding-loader::before {
+  content: "Finalizing...";
+  line-height: 1em;
+  color: #0000;
+  background: inherit;
+  background-image: radial-gradient(circle closest-side, #fff 94%, #fb7185);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+@keyframes onboarding-l24 {
+  100% { background-position: left; }
+}
+
+@keyframes blob-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(40px, -50px) scale(1.08); }
+  50% { transform: translate(-30px, -80px) scale(1.15); }
+  75% { transform: translate(-50px, -25px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes blob-drift-reverse {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-40px, -60px) scale(1.1); }
+  50% { transform: translate(35px, -90px) scale(0.9); }
+  75% { transform: translate(50px, -30px) scale(1.08); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes blob-drift-slow {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(50px, -40px) scale(1.06); }
+  50% { transform: translate(15px, -70px) scale(1.12); }
+  75% { transform: translate(-40px, -50px) scale(0.94); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* Shooting star — slides along its own 45° axis, fades in then out */
+@keyframes shoot-star {
+  0%   { translate: -60px -60px; opacity: 0; }
+  10%  { opacity: 1; }
+  70%  { translate: 0px 0px;     opacity: 0.8; }
+  95%  { translate: 80px 80px;   opacity: 0; }
+  100% { translate: -60px -60px; opacity: 0; }
+}
+
+/* Subtle sparkle pulse — scale + slight rotation */
+@keyframes sparkle-pulse {
+  0%, 100% { transform: scale(0.8) rotate(-8deg); opacity: 0.2; }
+  50%       { transform: scale(1.2) rotate(8deg);  opacity: 0.6; }
+}
+
+@keyframes scan-line {
+  0%   { top: 0%; opacity: 1; }
+  90%  { top: 100%; opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes ocr-success-pop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes conveyor {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@layer utilities {
+  .animate-blob-drift {
+    animation: blob-drift 10s ease-in-out infinite;
+  }
+  .animate-blob-drift-reverse {
+    animation: blob-drift-reverse 13s ease-in-out infinite;
+  }
+  .animate-blob-drift-slow {
+    animation: blob-drift-slow 16s ease-in-out infinite;
+  }
+  .animate-slide-in-right {
+    animation: slide-in-right 0.4s ease-out;
+  }
+  .animate-slide-in-left {
+    animation: slide-in-left 0.4s ease-out;
+  }
+  .animate-conveyor {
+    animation: conveyor 20s linear infinite;
+  }
+  .animate-scan-line {
+    animation: scan-line 1.4s ease-in-out infinite;
+  }
+  .animate-ocr-success {
+    animation: ocr-success-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  .animate-shoot-star {
+    animation: shoot-star 3s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+  }
+  .animate-sparkle-pulse {
+    animation: sparkle-pulse 2.8s ease-in-out infinite;
+  }
+}
